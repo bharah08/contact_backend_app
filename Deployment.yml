@@ -16,19 +16,21 @@ spec:
   spec:
     containers:
     - name: contactbackendcontainer
-      image: ashokit/contact_backend_app
+      image: bharath0812/spring:2.0
       ports:
       - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: contactbackendsvc
+ name: httpdservice
 spec:
-  type: LoadBalancer
-  selector:
+ type: NodePort
+ selector:
    app: contactbackend
-  ports:
+ ports:
    - port: 80
      targetPort: 8080
+     nodePort: 32140
+     protocol: TCP
 ...
